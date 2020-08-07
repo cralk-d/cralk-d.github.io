@@ -14,7 +14,9 @@ class CreateFeedsTable extends Migration
     public function up()
     {
         Schema::create('feeds', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('email');
+            $table->string('feed');
             $table->timestamps();
         });
     }

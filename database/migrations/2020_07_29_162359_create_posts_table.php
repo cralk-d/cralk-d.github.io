@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('landlord_id')->index();
             $table->string('title')->default('House For Rent');
             $table->string('price');
             $table->integer('bedrooms');
@@ -24,7 +24,7 @@ class CreatePostsTable extends Migration
             $table->string('description');
             $table->string('status')->default('0');
             $table->timestamps();
-            $table->index('user_id');
+            
         });
     }
 

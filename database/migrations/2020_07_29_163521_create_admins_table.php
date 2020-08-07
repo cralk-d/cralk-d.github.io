@@ -17,7 +17,7 @@ class CreateAdminsTable extends Migration
             $table->id();                                                                                                                                                                                                                                                                                                                                       
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('title')->default('Adminl');
+            $table->string('title')->default('Admin');
             $table->string('_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

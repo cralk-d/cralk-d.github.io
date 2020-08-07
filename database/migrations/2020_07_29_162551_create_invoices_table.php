@@ -14,8 +14,14 @@ class CreateInvoicesTable extends Migration
     public function up()
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->id();
+            $table->bigInteger('number');
+            $table->unsignedBigInteger('user_id');
+            $table->string('amount');
+            $table->string('status')->default('0');
+            $table->unsignedBigInteger('series_id');
             $table->timestamps();
+            $table->index('series_id');
+            $table->index('user_id');
         });
     }
 

@@ -36,4 +36,25 @@ class Landlord extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created( function($landlord){
+            $landlord->profile()->create([
+                'description'=> $landlord->title,]);
+        });
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function profile()
+    {
+     return $this->hasOne(Profile::class);
+    }
+    
 }
