@@ -1,7 +1,6 @@
 <?php
 
-use App\Admin;
-use App\Notifications\NewUserCreated;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,13 +14,17 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::post('/frontend','OrderController@store');
-Route::get('/orders','OrderController@index')->name('index');
-Route::get('/frontend/{post}','FrontendController@show')->name('show');
-Route::get('/','FrontendController@index')->name('index');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::post('/feed','FrontendController@store');
+Route::post('/frontend','OrderController@store');
+Route::get('/orders/{order}','OrderController@show')->name('show');
+Route::get('/orders','OrderController@index')->name('index');
+
+Route::get('/frontend/{post}','FrontendController@show')->name('show');
+Route::get('/','FrontendController@index')->name('index');
 
 
 Route::prefix('owner')->group(function() {
@@ -57,3 +60,8 @@ Route::namespace('Owner')->prefix('owner')->name('owner.')->group(function(){
 	Route::get('/posts/{post}', 'PostsController@show');
 	Route::get('/','OwnerController@index')->name('index');
 });
+
+Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
+Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
+Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');
+

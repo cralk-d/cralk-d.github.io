@@ -1,9 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\App;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
@@ -15,8 +13,7 @@ class AppController extends Controller
      */
     public function index()
     {
-        $app= App::all();
-        return view('admin.app.index',compact('apps'));
+        //
     }
 
     /**
@@ -26,7 +23,7 @@ class AppController extends Controller
      */
     public function create()
     {
-        return view('admin.app.create');
+        //
     }
 
     /**
@@ -37,17 +34,16 @@ class AppController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name'=>'required|string']);
-        App::create($request()->all());
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\App  $app
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(App $app)
+    public function show($id)
     {
         //
     }
@@ -55,10 +51,10 @@ class AppController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\App  $app
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(App $app)
+    public function edit($id)
     {
         //
     }
@@ -67,10 +63,10 @@ class AppController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\App  $app
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, App $app)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,10 +74,10 @@ class AppController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\App  $app
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(App $app)
+    public function destroy($id)
     {
         //
     }

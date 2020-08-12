@@ -35,19 +35,34 @@ class PostsController extends Controller
             'bedrooms'=>['required','integer'],
             'bathrooms'=>['required','integer'],
             'image' => ['required', 'image'],
+            'image_i' => ['required','image'],
+            'image_ii'=> ['required','image'],
+            'image_iii' =>['required','image'],
             'description'=>['required','string','max:500'],
         ]);
 
         $imagePath = request('image')->store('uploads', 'public');
+        $imagePath_i = request('image_i')->store('uploads','public');
+        $imagePath_ii = request('image_ii')->store('uploads','public');
+        $imagePath_iii = request('image_iii')->store('uploads','public');
 
         $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+        $image_i = Image::make(public_path("storage/{$imagePath_i}"))->fit(1200, 1200);
+        $image_ii = Image::make(public_path("storage/{$imagePath_ii}"))->fit(1200, 1200);
+        $image_iii = Image::make(public_path("storage/{$imagePath_iii}"))->fit(1200, 1200);
         $image->save();
+        $image_i->save();
+        $image_ii->save();
+        $image_iii->save();
 
         auth()->user()->posts()->create([
             'price' => $data['price'],
             'bedrooms'=>$data['bedrooms'],
             'bathrooms'=>$data['bathrooms'],
-            'image' => $imagePath,
+            'image'=> $imagePath,
+            'image_i'=>$imagePath_i,
+            'image_ii'=>$imagePath_ii,
+            'image_iii'=>$imagePath_iii,
             'description'=>$data['description'],
         ]);
 

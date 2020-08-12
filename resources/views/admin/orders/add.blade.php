@@ -307,7 +307,7 @@
                             <h3 class="card-title">ADD Invoice</h3>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.orders.store', $order->id) }}" method="POST" autocomplete="off">
+                            <form action="{{ route('admin.invoices.store', $order->id) }}" method="POST" autocomplete="off">
                                 @csrf
                                 <div class="form-group">
                                     <label>Invoice Format</label>
@@ -320,7 +320,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Customer</label>
-                                <input type="text" class="form-control" name="user_id" value="{{ $order->user_id }}" >
+                                    <input type="text" class="form-control" value="{{ $order->user->name }}" >
+                                </div>
+                                <div class="form-group">
+                                    
+                                    <input type="hidden" class="form-control" name="user_id" value="{{ $order->user_id }}" >
                                 </div>
                                 <div class="form-group">
                                     <label>Amount</label>

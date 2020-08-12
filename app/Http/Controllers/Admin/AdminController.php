@@ -7,12 +7,14 @@ use App\Admin;
 use App\Feed;
 use App\Invoice;
 use App\Landlord;
+use App\Notifications\NewUserCreated;
 use App\Order;
 use App\Payment;
 use App\Post;
 use App\Serie;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
 
@@ -32,6 +34,7 @@ class AdminController extends Controller
         $landlords= Landlord::all();
         $payments = Payment::all();
         $posts = Post::all();
+        //$registered->notify(new NewUserCreated(Auth::user()));
         return view('admin.dashboard',compact('users','feeds','invoices','series','orders','landlords','payments','posts'));
     }
 

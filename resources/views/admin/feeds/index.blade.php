@@ -278,6 +278,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Email</th>
+                                        <th>Message</th>
                                         <th>Created</th>
                                         <th>Action</th>
                                         
@@ -288,7 +289,13 @@
                                         <tr>
                                             <td>{{$feed->id}}</td>                                        
                                             <td>{{ $feed->email}}</td>
-                                            <td> </td>  
+                                            <td>{{ $feed->feed }}</td>
+                                            <td>{{ $feed->created_at}} </td> 
+                                            <td>
+                                            
+                                                <button class="btn btn-info"><i class="fas fa-check-circle"></i> Activate</button>
+                                                <button class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>
+                                            </td> 
                                         </tr> 
                                     @endforeach
                                 

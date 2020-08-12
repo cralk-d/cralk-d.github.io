@@ -19,10 +19,7 @@ class Profile extends Model
     }
     public function user()
     {
-        return $this->belongsTo(Landlord::class);
+        return $this->belongsTo(User::class);
     }
-    public function admin()
-    {
-        return $this->belongsTo(Admin::class);
-    }
+   
 }

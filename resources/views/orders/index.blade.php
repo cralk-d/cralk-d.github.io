@@ -8,9 +8,7 @@
                         <tr>
                             <td>#</td>
                             <td>Order ID</td>
-                            <td>Image</td>
-                            <td>Owner</td>
-                            <td>Price</td>
+                            <td>Names</td>
                             <td>Action</td>
                         </tr>
                     </thead>
@@ -19,10 +17,12 @@
                             <tr>
                             <td>{{ $order->id}}</td>
                                 <td>{{$order->series->prefix ?? ''}}-{{ str_pad($order->id, 5,'0', STR_PAD_LEFT) }}</td>
-                                <td><img src="/storage/{{ $order->image }}"  class="img-size-50"></td>
-                                <td>{{$order->post->landlord->name}}</td>
-                                <td></td>
-                                <td></td>
+                                <td>{{Auth::user()->name}}</td>
+                                <td>
+                                    <a href="/orders/{{ $order->id }}"  class="btn btn-info"><i class="fas fa-eye"></i> View</a>
+                                    <a href="" class="btn btn-danger"> <i class="fas fa-times-circle"></i> Cancel Order</a>
+                                    <a href="" class="btn btn-warning"> <i class="far fa-money"></i>Pay Order </a>
+                                </td>
                             </tr> 
                         @endforeach
                     </tbody>

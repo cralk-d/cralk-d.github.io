@@ -308,6 +308,13 @@
                             <h3 class="card-title">LIST OF INVOICES</h3>
                         </div>
                         <div class="card-body">
+                            @if ($message = Session::get('success'))
+                                <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <h5><i class="icon fas fa-check"></i> Success!</h5>
+                                    {{ $message }}
+                                </div>
+                            @endif
                             <table id="all-users" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -337,9 +344,13 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary"><i class="fas fa-pen"></i> Edit invoice</button>
-                                        <a href="{{ route('admin.invoices.show', $invoice->id)}}" class="btn btn-info"> <i class="fa fa-eye"></i> View Invoice</a>
-                                            <button class="btn btn-danger"><i class="fas fa-trash"></i> Delete Invoice</button>
+                                            <button class="btn btn-primary"><i class="fas fa-pen"></i> Edit</button>
+                                        <a href="{{ route('admin.invoices.show', $invoice->id)}}" class="btn btn-info"> <i class="fa fa-eye"></i> View</a>
+                                        <form action="{{ route('admin.invoices.destroy',$invoice->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')    
+                                            <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i> Delete</button>
+                                        </form>
                                         </td>
                                     </tr>
                                 @endforeach

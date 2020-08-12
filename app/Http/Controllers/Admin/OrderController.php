@@ -26,17 +26,10 @@ class OrderController extends Controller
         return view('admin.orders.index',compact('orders','series'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Order $order)
+    public function create()
     {
-        $series = Serie::all();
-        return view('admin.orders.create', compact('series','order'));
+       
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -77,7 +70,8 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        $series = Serie::all();
+        return view('admin.orders.add', compact('order','series'));
     }
 
     /**

@@ -17,10 +17,14 @@
                 From
                 <address>
                     <strong>{{ config('app.name')}}, Inc.</strong><br>
-                    795 Folsom Ave, Suite 600<br>
-                    San Francisco, CA 94107<br>
-                    Phone: (804) 123-5432<br>
-                    Email: info@almasaeedstudio.com
+                    @foreach ($apps as $app)
+                    {{$app->address}}
+                    <br>
+                    {{$app->alt_address}}<br>
+                    Phone: {{$app->phone}}<br>
+                    Email: {{$app->email}}
+                    @endforeach
+                    
                 </address>
             </div>
             <!-- /.col -->
@@ -40,7 +44,7 @@
             <div class="col-sm-4 invoice-col">
                 <b>Invoice</b> {{$invoice->series->prefix ?? ''}}-{{ str_pad($invoice->id, 5,'0', STR_PAD_LEFT) }}<br>
                 <br>
-                <b>Order ID:</b> 4F3S8J<br>
+                <b>Order ID:</b><br>
                 <b>Payment Due:</b> 2/22/2014<br>
                 <b>Account:</b> 968-34567
             </div>
@@ -59,8 +63,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                        <td>{{ $invoice->id}}</td>
-                        <td>ORDER{{ $invoice->id}}</td>
+                        <td>{{$invoice->series->prefix ?? ''}}-{{ str_pad($invoice->id, 5,'0', STR_PAD_LEFT) }}</td>
+                        <td>ORDER-{{ str_pad($invoice->order_id, 5,'0', STR_PAD_LEFT) }}</td>
                             <td> Payment of post you made on {{ config('app.name')}}</td>
                             <td>{{ $invoice->amount}} RWF</td>
                         </tr>  

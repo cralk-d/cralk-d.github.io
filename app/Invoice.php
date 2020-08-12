@@ -2,18 +2,20 @@
 
 namespace App;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
-    protected $fillable= ['series_id','user_id','amount'];
+    protected $fillable= ['user_id','amount','series_id'];
+
     protected  $dates=[
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
-    public function SerializeDate(\DateTimeInterface $date)
+    public function SerializeDate(DateTimeInterface $date)
     {
         return $date->format('d-m-Y H:i:s');
     }
@@ -31,13 +33,8 @@ class Invoice extends Model
             $model->number = Invoice::where('series_id', $model->series_id)->max('number') +1;
         });
     }
-
     public function user()
     {
     	return $this->belongsTo(User::class,'user_id');
-    }
-    public function orders()
-    {
-        return $this->belongsTo(Order::class);
     }
 }

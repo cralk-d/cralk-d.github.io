@@ -110,13 +110,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/admin/post" class="nav-link active">
+                        <a href="/admin/post" class="nav-link">
                             <i class="nav-icon fas fa-images"></i>
                             <p>Posts</p>
                         </a>
                     </li>
                     <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
+                        <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-shopping-bag"></i>
                             <p>Order<i class="right fas fa-angle-left"></i></p>
                         </a>
@@ -292,8 +292,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Posts</li>
+                            <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                            <li class="breadcrumb-item active">Orders</li>
                         </ol>
                     </div>
                 </div>
@@ -329,10 +329,7 @@
                                 </thead>
                                 @foreach($orders as $order)
                                     <tr>
-                                        <td> <div class="icheck-primary">
-                                                <input type="checkbox" value="{{$order->id}}" id="check1">
-                                                <label for="check1"></label>
-                                            </div></td>
+                                        <td> {{$order->series->prefix ?? ''}}-{{ str_pad($order->id, 5,'0', STR_PAD_LEFT) }}</td>
                                         <td>{{$order->p_id}}</td>
                                         <td> {{$order->user->name}} </td>
                                         <td>Rwf</td>
@@ -348,7 +345,7 @@
 
                                         <td>
 
-                                            <a href="{{ route('admin.orders.create',$order->id) }}" class="btn btn-success" >
+                                            <a href="{{ route('admin.orders.edit',$order->id) }}" class="btn btn-success" >
                                                 <i class="fas fa-plus"></i> Add Invoice
                                             </a>
 
@@ -381,7 +378,7 @@
 <script src="{{ ('../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ ('../../plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ ('../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ ('../js/custom.min.js') }}"></script>
+<script src="{{ ('../../js/admin.min.js') }}"></script>
 
 <script>
     $(function () {
